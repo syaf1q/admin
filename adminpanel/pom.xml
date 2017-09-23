@@ -38,7 +38,6 @@
 		</dependency>
 
 		<!-- SPRING MVC -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -46,7 +45,6 @@
 		</dependency>
 
 		<!-- JSTL -->
-
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
