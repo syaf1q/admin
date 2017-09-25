@@ -13,15 +13,6 @@ public class PageController {
 	@Autowired
 	private LoginDAO loginDAO;
 
-	@RequestMapping(value = { "/", "/home", "/index" })
-	public ModelAndView index() {
-
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("greeting", "Welcome To Spring");
-		return mv;
-
-	}
-
 	@RequestMapping(value = "/login")
 	public ModelAndView login() {
 
@@ -30,24 +21,15 @@ public class PageController {
 		return mv;
 
 	}
+	
+	@RequestMapping(value = "/dashboard")
+	public ModelAndView dashboard() {
 
-	// @RequestMapping(value = "/testrequestparam")
-	// public ModelAndView testrequestparam(@RequestParam(value = "greeting",
-	// required = true) String greeting) {
-	//
-	// ModelAndView mv = new ModelAndView("page");
-	// mv.addObject("greeting", greeting);
-	// return mv;
-	//
-	// }
-	//
-	// @RequestMapping(value = "/testpathvariable/${greeting}")
-	// public ModelAndView test(@PathVariable("greeting") String greeting) {
-	//
-	// ModelAndView mv = new ModelAndView("page");
-	// mv.addObject("greeting", greeting);
-	// return mv;
-	//
-	// }
+		ModelAndView mv = new ModelAndView("dashboard");
+		mv.addObject("", "");
+		return mv;
+
+	}
+
 
 }

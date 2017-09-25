@@ -1,3 +1,5 @@
+<%@include file="/WEB-INF/jsp/taglib.jsp"%>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 	id="mainNav">
 	<a class="navbar-brand" href="index.html">Start Bootstrap</a>
