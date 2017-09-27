@@ -5,6 +5,8 @@
 <%@attribute name="css" fragment="true"%>
 <%@attribute name="js" fragment="true"%>
 <%@attribute name="breadcrumb" fragment="true"%>
+<%@attribute name="images" fragment="true"%>
+<%@attribute name="vendor" fragment="true"%>
 
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
@@ -19,16 +21,14 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<title>Admin Panel</title>
+	<title>Admin Panel ${vendor}</title>
 	
 	<!-- Bootstrap core CSS-->
 	<link href="${vendor}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom fonts for this template-->
-	<link href="${vendor}/font-awesome/css/font-awesome.min.css"
-		rel="stylesheet" type="text/css">
+	<link href="${vendor}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<!-- Page level plugin CSS-->
-	<link href="${vendor}/datatables/dataTables.bootstrap4.css"
-		rel="stylesheet">
+	<link href="${vendor}/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	<!-- Custom styles for this template-->
 	<link href="${css}/sb-admin.css" rel="stylesheet">
 	
