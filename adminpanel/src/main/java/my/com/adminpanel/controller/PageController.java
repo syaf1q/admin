@@ -5,19 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import my.com.adminpanelbackend.dao.LoginDAO;
+import my.com.adminpanelbackend.dto.ApLogin;
 
 @Controller
 public class PageController {
 
 	@Autowired
-	private LoginDAO loginDAO;
+	private ApLogin apLogin;
 
 	@RequestMapping(value = "/login")
 	public ModelAndView login() {
 
 		ModelAndView mv = new ModelAndView("login");
-		mv.addObject("user", loginDAO.list());
+		mv.addObject("user", "");
 		return mv;
 
 	}
