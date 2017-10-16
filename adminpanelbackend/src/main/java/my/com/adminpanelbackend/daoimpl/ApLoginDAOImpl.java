@@ -18,4 +18,13 @@ public class ApLoginDAOImpl implements ApLoginDAO {
 		return list;
 
 	}
+	
+	@Override
+	public boolean validateUsernameAndPassword(String username, String password) {
+
+		boolean val = true;
+
+		return val;
+
+	}
 }

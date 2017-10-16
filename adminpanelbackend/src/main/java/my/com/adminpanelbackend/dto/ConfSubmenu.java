@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,34 +27,37 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author syafiq
  */
 @Entity
-@Table(name = "conf_menu")
+@Table(name = "conf_submenu")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ConfMenu.findAll", query = "SELECT c FROM ConfMenu c"),
-    @NamedQuery(name = "ConfMenu.findById", query = "SELECT c FROM ConfMenu c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfMenu.findByMenu", query = "SELECT c FROM ConfMenu c WHERE c.menu = :menu"),
-    @NamedQuery(name = "ConfMenu.findByUrl", query = "SELECT c FROM ConfMenu c WHERE c.url = :url"),
-    @NamedQuery(name = "ConfMenu.findByActive", query = "SELECT c FROM ConfMenu c WHERE c.active = :active")})
-public class ConfMenu implements Serializable {
+    @NamedQuery(name = "ConfSubmenu.findAll", query = "SELECT c FROM ConfSubmenu c"),
+    @NamedQuery(name = "ConfSubmenu.findById", query = "SELECT c FROM ConfSubmenu c WHERE c.id = :id"),
+    @NamedQuery(name = "ConfSubmenu.findBySubmenu", query = "SELECT c FROM ConfSubmenu c WHERE c.submenu = :submenu"),
+    @NamedQuery(name = "ConfSubmenu.findByUrl", query = "SELECT c FROM ConfSubmenu c WHERE c.url = :url"),
+    @NamedQuery(name = "ConfSubmenu.findByActive", query = "SELECT c FROM ConfSubmenu c WHERE c.active = :active")})
+public class ConfSubmenu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "menu")
-    private String menu;
+    @Column(name = "submenu")
+    private String submenu;
     @Column(name = "url")
     private String url;
     @Column(name = "active")
     private Integer active;
-    @OneToMany(mappedBy = "idConfMenu")
-    private List<ConfSubmenu> confSubmenuList;
+    @JoinColumn(name = "id_conf_menu", referencedColumnName = "id")
+    @ManyToOne
+    private ConfMenu idConfMenu;
+    @OneToMany(mappedBy = "idConfSubmenu")
+    private List<ConfAccessMenu> confAccessMenuList;
 
-    public ConfMenu() {
+    public ConfSubmenu() {
     }
 
-    public ConfMenu(Integer id) {
+    public ConfSubmenu(Integer id) {
         this.id = id;
     }
 
@@ -64,12 +69,12 @@ public class ConfMenu implements Serializable {
         this.id = id;
     }
 
-    public String getMenu() {
-        return menu;
+    public String getSubmenu() {
+        return submenu;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
+    public void setSubmenu(String submenu) {
+        this.submenu = submenu;
     }
 
     public String getUrl() {
@@ -88,13 +93,21 @@ public class ConfMenu implements Serializable {
         this.active = active;
     }
 
-    @XmlTransient
-    public List<ConfSubmenu> getConfSubmenuList() {
-        return confSubmenuList;
+    public ConfMenu getIdConfMenu() {
+        return idConfMenu;
     }
 
-    public void setConfSubmenuList(List<ConfSubmenu> confSubmenuList) {
-        this.confSubmenuList = confSubmenuList;
+    public void setIdConfMenu(ConfMenu idConfMenu) {
+        this.idConfMenu = idConfMenu;
+    }
+
+    @XmlTransient
+    public List<ConfAccessMenu> getConfAccessMenuList() {
+        return confAccessMenuList;
+    }
+
+    public void setConfAccessMenuList(List<ConfAccessMenu> confAccessMenuList) {
+        this.confAccessMenuList = confAccessMenuList;
     }
 
     @Override
@@ -107,10 +120,10 @@ public class ConfMenu implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfMenu)) {
+        if (!(object instanceof ConfSubmenu)) {
             return false;
         }
-        ConfMenu other = (ConfMenu) object;
+        ConfSubmenu other = (ConfSubmenu) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +132,7 @@ public class ConfMenu implements Serializable {
 
     @Override
     public String toString() {
-        return "my.com.adminpanelbackend.dto.ConfMenu[ id=" + id + " ]";
+        return "my.com.adminpanelbackend.dto.ConfSubmenu[ id=" + id + " ]";
     }
     
 }

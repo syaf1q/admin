@@ -25,34 +25,31 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author syafiq
  */
 @Entity
-@Table(name = "conf_menu")
+@Table(name = "fin_transaction")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ConfMenu.findAll", query = "SELECT c FROM ConfMenu c"),
-    @NamedQuery(name = "ConfMenu.findById", query = "SELECT c FROM ConfMenu c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfMenu.findByMenu", query = "SELECT c FROM ConfMenu c WHERE c.menu = :menu"),
-    @NamedQuery(name = "ConfMenu.findByUrl", query = "SELECT c FROM ConfMenu c WHERE c.url = :url"),
-    @NamedQuery(name = "ConfMenu.findByActive", query = "SELECT c FROM ConfMenu c WHERE c.active = :active")})
-public class ConfMenu implements Serializable {
+    @NamedQuery(name = "FinTransaction.findAll", query = "SELECT f FROM FinTransaction f"),
+    @NamedQuery(name = "FinTransaction.findById", query = "SELECT f FROM FinTransaction f WHERE f.id = :id"),
+    @NamedQuery(name = "FinTransaction.findByIdConfFinanceCode", query = "SELECT f FROM FinTransaction f WHERE f.idConfFinanceCode = :idConfFinanceCode"),
+    @NamedQuery(name = "FinTransaction.findByIdFinResit", query = "SELECT f FROM FinTransaction f WHERE f.idFinResit = :idFinResit")})
+public class FinTransaction implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "menu")
-    private String menu;
-    @Column(name = "url")
-    private String url;
-    @Column(name = "active")
-    private Integer active;
-    @OneToMany(mappedBy = "idConfMenu")
-    private List<ConfSubmenu> confSubmenuList;
+    @Column(name = "id_conf_finance_code")
+    private Integer idConfFinanceCode;
+    @Column(name = "id_fin_resit")
+    private Integer idFinResit;
+    @OneToMany(mappedBy = "idFinTransaction")
+    private List<FinTransactionDetail> finTransactionDetailList;
 
-    public ConfMenu() {
+    public FinTransaction() {
     }
 
-    public ConfMenu(Integer id) {
+    public FinTransaction(Integer id) {
         this.id = id;
     }
 
@@ -64,37 +61,29 @@ public class ConfMenu implements Serializable {
         this.id = id;
     }
 
-    public String getMenu() {
-        return menu;
+    public Integer getIdConfFinanceCode() {
+        return idConfFinanceCode;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
+    public void setIdConfFinanceCode(Integer idConfFinanceCode) {
+        this.idConfFinanceCode = idConfFinanceCode;
     }
 
-    public String getUrl() {
-        return url;
+    public Integer getIdFinResit() {
+        return idFinResit;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setIdFinResit(Integer idFinResit) {
+        this.idFinResit = idFinResit;
     }
 
     @XmlTransient
-    public List<ConfSubmenu> getConfSubmenuList() {
-        return confSubmenuList;
+    public List<FinTransactionDetail> getFinTransactionDetailList() {
+        return finTransactionDetailList;
     }
 
-    public void setConfSubmenuList(List<ConfSubmenu> confSubmenuList) {
-        this.confSubmenuList = confSubmenuList;
+    public void setFinTransactionDetailList(List<FinTransactionDetail> finTransactionDetailList) {
+        this.finTransactionDetailList = finTransactionDetailList;
     }
 
     @Override
@@ -107,10 +96,10 @@ public class ConfMenu implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfMenu)) {
+        if (!(object instanceof FinTransaction)) {
             return false;
         }
-        ConfMenu other = (ConfMenu) object;
+        FinTransaction other = (FinTransaction) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +108,7 @@ public class ConfMenu implements Serializable {
 
     @Override
     public String toString() {
-        return "my.com.adminpanelbackend.dto.ConfMenu[ id=" + id + " ]";
+        return "my.com.adminpanelbackend.dto.FinTransaction[ id=" + id + " ]";
     }
     
 }

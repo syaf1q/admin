@@ -25,34 +25,31 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author syafiq
  */
 @Entity
-@Table(name = "conf_menu")
+@Table(name = "conf_finance_code")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ConfMenu.findAll", query = "SELECT c FROM ConfMenu c"),
-    @NamedQuery(name = "ConfMenu.findById", query = "SELECT c FROM ConfMenu c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfMenu.findByMenu", query = "SELECT c FROM ConfMenu c WHERE c.menu = :menu"),
-    @NamedQuery(name = "ConfMenu.findByUrl", query = "SELECT c FROM ConfMenu c WHERE c.url = :url"),
-    @NamedQuery(name = "ConfMenu.findByActive", query = "SELECT c FROM ConfMenu c WHERE c.active = :active")})
-public class ConfMenu implements Serializable {
+    @NamedQuery(name = "ConfFinanceCode.findAll", query = "SELECT c FROM ConfFinanceCode c"),
+    @NamedQuery(name = "ConfFinanceCode.findById", query = "SELECT c FROM ConfFinanceCode c WHERE c.id = :id"),
+    @NamedQuery(name = "ConfFinanceCode.findByCode", query = "SELECT c FROM ConfFinanceCode c WHERE c.code = :code"),
+    @NamedQuery(name = "ConfFinanceCode.findByDescription", query = "SELECT c FROM ConfFinanceCode c WHERE c.description = :description")})
+public class ConfFinanceCode implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "menu")
-    private String menu;
-    @Column(name = "url")
-    private String url;
-    @Column(name = "active")
-    private Integer active;
-    @OneToMany(mappedBy = "idConfMenu")
-    private List<ConfSubmenu> confSubmenuList;
+    @Column(name = "code")
+    private String code;
+    @Column(name = "description")
+    private String description;
+    @OneToMany(mappedBy = "idConfFinanceCode")
+    private List<FinBillDetail> finBillDetailList;
 
-    public ConfMenu() {
+    public ConfFinanceCode() {
     }
 
-    public ConfMenu(Integer id) {
+    public ConfFinanceCode(Integer id) {
         this.id = id;
     }
 
@@ -64,37 +61,29 @@ public class ConfMenu implements Serializable {
         this.id = id;
     }
 
-    public String getMenu() {
-        return menu;
+    public String getCode() {
+        return code;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getUrl() {
-        return url;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @XmlTransient
-    public List<ConfSubmenu> getConfSubmenuList() {
-        return confSubmenuList;
+    public List<FinBillDetail> getFinBillDetailList() {
+        return finBillDetailList;
     }
 
-    public void setConfSubmenuList(List<ConfSubmenu> confSubmenuList) {
-        this.confSubmenuList = confSubmenuList;
+    public void setFinBillDetailList(List<FinBillDetail> finBillDetailList) {
+        this.finBillDetailList = finBillDetailList;
     }
 
     @Override
@@ -107,10 +96,10 @@ public class ConfMenu implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfMenu)) {
+        if (!(object instanceof ConfFinanceCode)) {
             return false;
         }
-        ConfMenu other = (ConfMenu) object;
+        ConfFinanceCode other = (ConfFinanceCode) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +108,7 @@ public class ConfMenu implements Serializable {
 
     @Override
     public String toString() {
-        return "my.com.adminpanelbackend.dto.ConfMenu[ id=" + id + " ]";
+        return "my.com.adminpanelbackend.dto.ConfFinanceCode[ id=" + id + " ]";
     }
     
 }

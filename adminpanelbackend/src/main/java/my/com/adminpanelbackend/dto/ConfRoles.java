@@ -25,34 +25,28 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author syafiq
  */
 @Entity
-@Table(name = "conf_menu")
+@Table(name = "conf_roles")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ConfMenu.findAll", query = "SELECT c FROM ConfMenu c"),
-    @NamedQuery(name = "ConfMenu.findById", query = "SELECT c FROM ConfMenu c WHERE c.id = :id"),
-    @NamedQuery(name = "ConfMenu.findByMenu", query = "SELECT c FROM ConfMenu c WHERE c.menu = :menu"),
-    @NamedQuery(name = "ConfMenu.findByUrl", query = "SELECT c FROM ConfMenu c WHERE c.url = :url"),
-    @NamedQuery(name = "ConfMenu.findByActive", query = "SELECT c FROM ConfMenu c WHERE c.active = :active")})
-public class ConfMenu implements Serializable {
+    @NamedQuery(name = "ConfRoles.findAll", query = "SELECT c FROM ConfRoles c"),
+    @NamedQuery(name = "ConfRoles.findById", query = "SELECT c FROM ConfRoles c WHERE c.id = :id"),
+    @NamedQuery(name = "ConfRoles.findByRolesName", query = "SELECT c FROM ConfRoles c WHERE c.rolesName = :rolesName")})
+public class ConfRoles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "menu")
-    private String menu;
-    @Column(name = "url")
-    private String url;
-    @Column(name = "active")
-    private Integer active;
-    @OneToMany(mappedBy = "idConfMenu")
-    private List<ConfSubmenu> confSubmenuList;
+    @Column(name = "roles_name")
+    private String rolesName;
+    @OneToMany(mappedBy = "idConfRoles")
+    private List<ApStaff> apStaffList;
 
-    public ConfMenu() {
+    public ConfRoles() {
     }
 
-    public ConfMenu(Integer id) {
+    public ConfRoles(Integer id) {
         this.id = id;
     }
 
@@ -64,37 +58,21 @@ public class ConfMenu implements Serializable {
         this.id = id;
     }
 
-    public String getMenu() {
-        return menu;
+    public String getRolesName() {
+        return rolesName;
     }
 
-    public void setMenu(String menu) {
-        this.menu = menu;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Integer getActive() {
-        return active;
-    }
-
-    public void setActive(Integer active) {
-        this.active = active;
+    public void setRolesName(String rolesName) {
+        this.rolesName = rolesName;
     }
 
     @XmlTransient
-    public List<ConfSubmenu> getConfSubmenuList() {
-        return confSubmenuList;
+    public List<ApStaff> getApStaffList() {
+        return apStaffList;
     }
 
-    public void setConfSubmenuList(List<ConfSubmenu> confSubmenuList) {
-        this.confSubmenuList = confSubmenuList;
+    public void setApStaffList(List<ApStaff> apStaffList) {
+        this.apStaffList = apStaffList;
     }
 
     @Override
@@ -107,10 +85,10 @@ public class ConfMenu implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ConfMenu)) {
+        if (!(object instanceof ConfRoles)) {
             return false;
         }
-        ConfMenu other = (ConfMenu) object;
+        ConfRoles other = (ConfRoles) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +97,7 @@ public class ConfMenu implements Serializable {
 
     @Override
     public String toString() {
-        return "my.com.adminpanelbackend.dto.ConfMenu[ id=" + id + " ]";
+        return "my.com.adminpanelbackend.dto.ConfRoles[ id=" + id + " ]";
     }
     
 }

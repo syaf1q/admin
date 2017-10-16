@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="my.com_adminpanelbackend_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>my.com.adminpanelbackend.dto.ConfAccessMenu</class>
+    <class>my.com.adminpanelbackend.dto.ConfMenu</class>
+    <class>my.com.adminpanelbackend.dto.FinTransactionDetail</class>
+    <class>my.com.adminpanelbackend.dto.ConfSubmenu</class>
+    <class>my.com.adminpanelbackend.dto.ConfFinanceCode</class>
+    <class>my.com.adminpanelbackend.dto.FinBill</class>
+    <class>my.com.adminpanelbackend.dto.ApStaff</class>
+    <class>my.com.adminpanelbackend.dto.ConfBillType</class>
+    <class>my.com.adminpanelbackend.dto.ApLogin</class>
+    <class>my.com.adminpanelbackend.dto.ApPackage</class>
+    <class>my.com.adminpanelbackend.dto.FinBillDetail</class>
+    <class>my.com.adminpanelbackend.dto.ApClient</class>
+    <class>my.com.adminpanelbackend.dto.FinTransaction</class>
+    <class>my.com.adminpanelbackend.dto.ApSubscription</class>
+    <class>my.com.adminpanelbackend.dto.ConfSystem</class>
+    <class>my.com.adminpanelbackend.dto.ApClientDetail</class>
+    <class>my.com.adminpanelbackend.dto.ConfRoles</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/adminpanel?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>
